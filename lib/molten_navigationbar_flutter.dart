@@ -121,25 +121,25 @@ class MoltenBottomNavigationBar extends StatelessWidget {
               ),
             ),
             // border for the dome
-            _animatedPositionedDome(
-              top: 0,
-              tabWidth: _tabWidth,
-              domeWidth: _domeWidth - _borderRaduis.topRight.x,
-              domeHeight: domeHeight,
-              domeColor:
-                  borderSize > 0 ? (borderColor ?? _barColor) : _barColor,
-            ),
+            // _animatedPositionedDome(
+            //   top: 0,
+            //   tabWidth: _tabWidth,
+            //   domeWidth: _domeWidth - _borderRaduis.topRight.x,
+            //   domeHeight: domeHeight,
+            //   domeColor:
+            //       borderSize > 0 ? (borderColor ?? _barColor) : _barColor,
+            // ),
             // Actual dome
-            _animatedPositionedDome(
-              top: borderSize < 1 ? 1 : (borderSize + 0.2),
-              tabWidth: _tabWidth,
-              domeWidth: _domeWidth - borderSize - _borderRaduis.topRight.x,
-              domeHeight: domeHeight,
-              domeColor: _barColor,
-            ),
+            // _animatedPositionedDome(
+            //   top: borderSize < 1 ? 1 : (borderSize + 0.2),
+            //   tabWidth: _tabWidth,
+            //   domeWidth: _domeWidth - borderSize - _borderRaduis.topRight.x,
+            //   domeHeight: domeHeight,
+            //   domeColor: _barColor,
+            // ),
             AnimatedPositioned(
-              top: 0,
-              bottom: selectedTab.title == null ? 0 : 16,
+              top: domeHeight,
+              bottom: 0, //selectedTab.title == null ? 0 : 16,
               curve: curve,
               duration: duration ?? Duration(milliseconds: 150),
               left: _tabWidth * selectedIndex,
@@ -148,7 +148,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
                 child: Container(
                   height: domeCircleSize,
                   decoration: BoxDecoration(
-                    color: _domeCircleColor,
+                    // color: _domeCircleColor,
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -158,13 +158,15 @@ class MoltenBottomNavigationBar extends StatelessWidget {
               final index = entry.key;
               final isSelected = index == selectedIndex;
               final title = entry.value.title;
+              final width = _normalizeDomeOnEdge(_tabWidth, index);
+
               return AnimatedPositioned(
                 curve: curve,
                 duration: duration ?? Duration(milliseconds: 150),
-                top: isSelected ? 0 : domeHeight,
+                top: domeHeight, //isSelected ? 0 : domeHeight,
                 bottom: 0,
                 left: _tabWidth * index,
-                width: _normalizeDomeOnEdge(_tabWidth, index),
+                width: width,
                 child: Column(
                   children: [
                     Expanded(
@@ -172,7 +174,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
                         tab: entry.value,
                         onTab: () => onTabChange(index),
                         isSelected: isSelected,
-                        circleSize: domeCircleSize,
+                        circleSize: width,
                       ),
                     ),
                     // const SizedBox(height: 8),
@@ -243,20 +245,23 @@ class _MoltenTabWrapper extends StatelessWidget {
     return IconTheme(
       data: IconThemeData(
         color: isSelected
-            ? tab.selectedColor ?? Colors.white
+            ? tab.selectedColor ?? Colors.grey
             : tab.unselectedColor ?? Colors.grey,
       ),
-      child: Container(
-        height: circleSize,
-        width: circleSize,
-        child: Material(
-          shape: CircleBorder(
-              side: BorderSide(width: 0, color: Colors.transparent)),
-          clipBehavior: Clip.hardEdge,
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: () => onTab(),
-            child: tab.icon,
+      child: GestureDetector(
+        onTap: () => onTab(),
+        child: Container(
+          height: circleSize,
+          width: circleSize,
+          child: Material(
+            // shape: CircleBorder(
+            //     side: BorderSide(width: 0, color: Colors.transparent)),
+            clipBehavior: Clip.hardEdge,
+            color: Colors.transparent,
+            child: Transform.scale(
+              scale: isSelected ? 2 : 1,
+              child: tab.icon,
+            ),
           ),
         ),
       ),
