@@ -102,26 +102,37 @@ class MoltenBottomNavigationBar extends StatelessWidget {
           'domeCircleSize must be less than or equal to (barHeight + domeHeight)');
       final selectedTab = tabs[selectedIndex];
       return Container(
-        height: barHeight + domeHeight,
+        height: barHeight,
         margin: margin,
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.9),
+          border: Border(
+            top: BorderSide(
+              width: borderSize,
+              color: (borderColor == null || borderSize < 1)
+                  ? _barColor
+                  : borderColor!,
+            ),
+          ),
+        ),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Container(
-              height: barHeight,
-              decoration: BoxDecoration(
-                color: _barColor,
-                borderRadius: _borderRaduis,
-                border: Border(
-                  top: BorderSide(
-                    width: borderSize,
-                    color: (borderColor == null || borderSize < 1)
-                        ? _barColor
-                        : borderColor!,
-                  ),
-                ),
-              ),
-            ),
+            // Container(
+            //   height: barHeight,
+            //   decoration: BoxDecoration(
+            //     color: _barColor,
+            //     borderRadius: _borderRaduis,
+            //     border: Border(
+            //       top: BorderSide(
+            //         width: borderSize,
+            //         color: (borderColor == null || borderSize < 1)
+            //             ? _barColor
+            //             : borderColor!,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             // border for the dome
             // _animatedPositionedDome(
             //   top: 0,
@@ -140,7 +151,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
             //   domeColor: _barColor,
             // ),
             AnimatedPositioned(
-              top: domeHeight,
+              top: 0,
               bottom: 0, //selectedTab.title == null ? 0 : 16,
               curve: curve,
               duration: duration ?? Duration(milliseconds: 150),
@@ -165,7 +176,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
               return AnimatedPositioned(
                 curve: curve,
                 duration: duration ?? Duration(milliseconds: 150),
-                top: domeHeight, //isSelected ? 0 : domeHeight,
+                top: 0, //isSelected ? 0 : domeHeight,
                 bottom: 0,
                 left: _tabWidth * index,
                 width: width,

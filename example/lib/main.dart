@@ -35,6 +35,10 @@ class _MyAppState extends State<MyApp> {
         // backgroundColor: Colors.deepPurple[400],
         // you can use the molten bar in the scaffold's bottomNavigationBar
         bottomNavigationBar: MoltenBottomNavigationBar(
+          barColor: Colors.black.withOpacity(0.3),
+          borderColor: Colors.red,
+          borderSize: 1,
+          borderRaduis: const BorderRadius.all(Radius.circular(0)),
           selectedIndex: _selectedIndex,
           domeHeight: 25,
           // specify what will happen when a tab is clicked
@@ -46,16 +50,25 @@ class _MyAppState extends State<MyApp> {
           // ansert as many tabs as you like
           tabs: [
             MoltenTab(
-              icon: Icon(Icons.search),
+              icon: Icon(
+                Icons.search,
+                size: 30,
+              ),
               // selectedColor: Colors.yellow,
             ),
             MoltenTab(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+                size: 30,
+              ),
               // title: Text('home'),
               // selectedColor: Colors.yellow,
             ),
             MoltenTab(
-              icon: Icon(Icons.person),
+              icon: Icon(
+                Icons.person,
+                size: 30,
+              ),
               // selectedColor: Colors.yellow,
             ),
           ],
