@@ -112,11 +112,13 @@ class MoltenBottomNavigationBar extends StatelessWidget {
               decoration: BoxDecoration(
                 color: _barColor,
                 borderRadius: _borderRaduis,
-                border: Border.all(
-                  width: borderSize,
-                  color: (borderColor == null || borderSize < 1)
-                      ? _barColor
-                      : borderColor!,
+                border: Border(
+                  top: BorderSide(
+                    width: borderSize,
+                    color: (borderColor == null || borderSize < 1)
+                        ? _barColor
+                        : borderColor!,
+                  ),
                 ),
               ),
             ),
