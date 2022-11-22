@@ -47,6 +47,8 @@ class MoltenBottomNavigationBar extends StatelessWidget {
   /// Applied to all 4 border sides, Default is 0
   final double borderSize;
 
+  final double scaleSize;
+
   /// Applied to all border sides
   final Color? borderColor;
 
@@ -78,6 +80,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
     this.borderColor,
     this.borderSize = 0,
     this.borderRaduis,
+    this.scaleSize = 1.5,
   }) : super(key: key);
 
   @override
@@ -188,6 +191,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
                         onTab: () => onTabChange(index),
                         isSelected: isSelected,
                         circleSize: width,
+                        scaleSize: scaleSize,
                       ),
                     ),
                     // const SizedBox(height: 8),
@@ -247,11 +251,14 @@ class _MoltenTabWrapper extends StatelessWidget {
   final bool isSelected;
   final Function onTab;
   final double circleSize;
+  final double scaleSize;
+
   _MoltenTabWrapper({
     required this.tab,
     required this.isSelected,
     required this.onTab,
     required this.circleSize,
+    required this.scaleSize,
   });
   @override
   Widget build(BuildContext context) {
@@ -272,7 +279,7 @@ class _MoltenTabWrapper extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             color: Colors.transparent,
             child: Transform.scale(
-              scale: isSelected ? 2 : 1,
+              scale: isSelected ? scaleSize : 1,
               child: tab.icon,
             ),
           ),
