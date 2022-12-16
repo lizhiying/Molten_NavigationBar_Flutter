@@ -40,6 +40,9 @@ class _MyAppState extends State<MyApp> {
           borderSize: 1,
           borderRaduis: const BorderRadius.all(Radius.circular(0)),
           selectedIndex: _selectedIndex,
+          padding: const EdgeInsets.only(
+            bottom: 23.0,
+          ),
           domeHeight: 25,
           // specify what will happen when a tab is clicked
           onTabChange: (clickedIndex) {

@@ -39,6 +39,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  universal_platform:
+    dependency: "direct main"
+    description:
+      name: universal_platform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+1"
   vector_math:
     dependency: transitive
     description:

@@ -24,6 +24,8 @@ class MoltenBottomNavigationBar extends StatelessWidget {
   /// Spacing around the bar, Default is [EdgeInsets.zero]
   final EdgeInsets margin;
 
+  final EdgeInsets padding;
+
   /// specify a color to be used as a background color, Default is Theme.bottomAppBarColor
   ///
   /// If the opacity is less than 1, it will automatically be 1
@@ -73,6 +75,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
     this.domeCircleSize = 50.0,
     required this.tabs,
     this.margin = EdgeInsets.zero,
+    this.padding = EdgeInsets.zero,
     required this.selectedIndex,
     required this.onTabChange,
     this.duration,
@@ -107,6 +110,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
       return Container(
         height: barHeight,
         margin: margin,
+        padding: padding,
         decoration: BoxDecoration(
           color: Colors.black.withOpacity(0.9),
           border: Border(
