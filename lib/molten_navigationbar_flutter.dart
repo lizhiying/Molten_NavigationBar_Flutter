@@ -191,12 +191,11 @@ class MoltenBottomNavigationBar extends StatelessWidget {
                   children: [
                     Expanded(
                       child: _MoltenTabWrapper(
-                        tab: entry.value,
-                        onTab: () => onTabChange(index),
-                        isSelected: isSelected,
-                        circleSize: width,
-                        scaleSize: scaleSize,
-                      ),
+                          tab: entry.value,
+                          onTab: () => onTabChange(index),
+                          isSelected: isSelected,
+                          circleSize: width,
+                          scaleSize: scaleSize),
                     ),
                     // const SizedBox(height: 8),
                     if (isSelected && title != null) title,
@@ -210,13 +209,12 @@ class MoltenBottomNavigationBar extends StatelessWidget {
     });
   }
 
-  Widget _animatedPositionedDome({
-    required double top,
-    required double domeWidth,
-    required double domeHeight,
-    required Color domeColor,
-    required double tabWidth,
-  }) {
+  Widget _animatedPositionedDome(
+      {required double top,
+      required double domeWidth,
+      required double domeHeight,
+      required Color domeColor,
+      required double tabWidth}) {
     return AnimatedPositioned(
       curve: curve,
       duration: duration ?? Duration(milliseconds: 150),
@@ -257,13 +255,12 @@ class _MoltenTabWrapper extends StatelessWidget {
   final double circleSize;
   final double scaleSize;
 
-  _MoltenTabWrapper({
-    required this.tab,
-    required this.isSelected,
-    required this.onTab,
-    required this.circleSize,
-    required this.scaleSize,
-  });
+  _MoltenTabWrapper(
+      {required this.tab,
+      required this.isSelected,
+      required this.onTab,
+      required this.circleSize,
+      required this.scaleSize});
   @override
   Widget build(BuildContext context) {
     return IconTheme(
@@ -282,10 +279,15 @@ class _MoltenTabWrapper extends StatelessWidget {
             //     side: BorderSide(width: 0, color: Colors.transparent)),
             clipBehavior: Clip.hardEdge,
             color: Colors.transparent,
-            child: Transform.scale(
-              scale: isSelected ? scaleSize : 1,
-              child: tab.icon,
-            ),
+            child: (tab.selectedIcon != null && isSelected)
+                ? tab.selectedIcon
+                : tab.icon,
+
+            // child: Transform.scale(
+            //   scale: isSelected ? scaleSize : 1,
+            //   child: (tab.selectedIcon != null && isSelected)
+            //       ? tab.selectedIcon
+            //       : tab.icon,
           ),
         ),
       ),
@@ -296,6 +298,7 @@ class _MoltenTabWrapper extends StatelessWidget {
 class MoltenTab {
   /// Can be any [Widget].
   final Widget icon;
+  final Widget? selectedIcon;
 
   /// title when tab is selected
   final Widget? title;
@@ -315,6 +318,7 @@ class MoltenTab {
   /// [icon] must not be null
   MoltenTab({
     required this.icon,
+    this.selectedIcon,
     this.selectedColor,
     this.title,
     this.unselectedColor,
