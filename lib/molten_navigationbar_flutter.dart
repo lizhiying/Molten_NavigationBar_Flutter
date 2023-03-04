@@ -111,7 +111,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
         margin: margin,
         padding: padding,
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.9),
+          color: _barColor,
           border: Border(
             top: BorderSide(
               width: borderSize,
