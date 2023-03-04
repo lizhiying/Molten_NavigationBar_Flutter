@@ -93,8 +93,7 @@ class MoltenBottomNavigationBar extends StatelessWidget {
           BorderRadius.only(
               topLeft: Radius.circular(10), topRight: Radius.circular(10));
 
-      final Color _barColor =
-          (barColor?.withOpacity(1)) ?? Theme.of(context).colorScheme.surface;
+      final Color _barColor = barColor ?? Theme.of(context).colorScheme.surface;
 
       final Color _domeCircleColor = (domeCircleColor?.withOpacity(1)) ??
           Theme.of(context).colorScheme.primary;
